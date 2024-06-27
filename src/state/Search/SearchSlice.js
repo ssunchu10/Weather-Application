@@ -1,6 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getWeather } from "../../apis/weatherApi";
 
+export const getData = () => async(dispatch, getState) => {
+    const appState = getState();
+    const {searchState} = appState;
+    const {location} = searchState;
+    const apiResponse = await getWeather(location);
+    console.log(apiResponse);
+    if(apiResponse){
+        dispatch(getSearchResults(apiResponse));
+    }else {
+        dispatch(getSearchResults(null));
+    }
+    
+}
+
 const SearchSlice = createSlice({
     name: "searchSlice",
     initialState: {
@@ -23,5 +37,5 @@ const SearchSlice = createSlice({
     }
 });
 
-export const {updateSearchLocation} = SearchSlice.actions;
+export const {updateSearchLocation, getSearchResults} = SearchSlice.actions;
 export default SearchSlice.reducer;
