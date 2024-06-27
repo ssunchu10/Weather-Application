@@ -41,6 +41,12 @@ h1 {
   padding: 1rem;
 }
 
+.app .error {
+  text-align: center;
+  color: red;
+  font-size: 5px;
+}
+
 .app input {
   padding: .7rem 1.5rem;
   font-size: 1.2rem;

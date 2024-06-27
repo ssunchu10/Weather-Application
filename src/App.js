@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
+import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
   const [data, setData] = useState([]);
   const [location, setLocation] = useState("");
   const [iconURL, setIconURL] = useState("");
+  const [error, setError] = useState("");
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=630b47da595bd59784417268bdd1d863&units=imperial`;
 
@@ -12,9 +15,13 @@ const App = () => {
     if (event.key === "Enter") {
       axios.get(url).then((response) => {
         setData(response.data);
+        setError("");
         console.log(response.data);
         const iconCode = response.data.weather[0].icon;
         setIconURL(`https://openweathermap.org/img/wn/${iconCode}@2x.png`);
+      }).catch((error) => {
+        setError("*Location not found!*");
+        console.error("Error!: ", error.message);
       });
       setLocation("");
     }
@@ -30,6 +37,9 @@ const App = () => {
           placeholder="Enter Location"
           type="text"
         />
+      </div>
+      <div className="error">
+        {error.length !== 0 ? <p>{error}</p> : null}
       </div>
 
       <div className="container">
@@ -74,11 +84,11 @@ const App = () => {
             </div>
             <div className="bottom-description">
               <div className="sunrise">
-                <p className="bold">{convertUnixTime(data.sys.sunrise)}AM</p>
+                <p className="bold">{convertUnixTime(data.sys.sunrise, data.timezone)}</p>
                 <p>Sunrise</p>
               </div>
               <div className="sunset">
-                <p className="bold">{convertUnixTime(data.sys.sunset)}PM</p>
+                <p className="bold">{convertUnixTime(data.sys.sunset, data.timezone)}</p>
                 <p>Sunset</p>
               </div>
             </div>
@@ -89,12 +99,8 @@ const App = () => {
   );
 };
 
-const convertUnixTime = (unixtime) => {
-  let dateObj = new Date(unixtime * 1000);
-  let utcString = dateObj.toUTCString();
-  const time = utcString.slice(-11, -7);
-
-  return time;
+const convertUnixTime = (unixtime, timezonOffset) => {
+  return moment.unix(unixtime).utcOffset(timezonOffset / 60).format("h:mm A");
 };
 
 export default App;
