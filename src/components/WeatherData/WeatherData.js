@@ -18,7 +18,7 @@ const WeatherData = () => {
         <div className="description-container">
           {data.weather ? (
             <img
-              className="weather-icon"
+              className="weather-icon-container"
               src={searchState.iconUrl}
               alt="weather-icon"
             />
@@ -29,38 +29,42 @@ const WeatherData = () => {
         </div>
       </div>
       <div className="bottom-container">
-        <div className="bottom-description">
+        <div className="bottom-description-container">
           <div className="feels">
             {data.main ? (
               <p className="bold">{Math.round(data.main.feels_like)}°F</p>
             ) : null}
-            <p>Feels Like</p>
+            {data.main ? <p>Feels Like</p> : null}
           </div>
           <div className="humidity">
             {data.main ? <p className="bold">{data.main.humidity}%</p> : null}
-            <p>Humidity</p>
+            {data.main ? <p>Humidity</p> : null}
           </div>
           <div className="wind">
             {data.wind ? (
               <p className="bold">{Math.round(data.wind.speed)}MPH</p>
             ) : null}
-            <p>Wind Speed</p>
+            {data.wind ? <p>Wind Speed</p> : null}
           </div>
         </div>
-        {/* <div className="bottom-description">
+        <div className="bottom-description-container">
           <div className="sunrise">
-            <p className="bold">
-              {convertUnixTime(data.sys.sunrise, data.timezone)}
-            </p>
-            <p>Sunrise</p>
+            {data.sys ? (
+              <p className="bold">
+                {convertUnixTime(data.sys.sunrise, data.timezone)}
+              </p>
+            ) : null}
+            {data.sys ? <p>Sunrise</p> : null}
           </div>
           <div className="sunset">
-            <p className="bold">
-              {convertUnixTime(data.sys.sunset, data.timezone)}
-            </p>
-            <p>Sunset</p>
+            {data.sys ? (
+              <p className="bold">
+                {convertUnixTime(data.sys.sunset, data.timezone)}
+              </p>
+            ) : null}
+            {data.sys ? <p>Sunset</p> : null}
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

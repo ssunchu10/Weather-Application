@@ -1,6 +1,9 @@
 .data-container {
     padding: 0 1rem;
     padding-top: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .top-container {
@@ -10,4 +13,26 @@
 
 .description-container {
     text-align: center;
+}
+
+.weather-icon-container {
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.bottom-description-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.bold{
+    font-weight: 700;
 }
