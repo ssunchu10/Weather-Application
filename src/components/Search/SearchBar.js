@@ -26,6 +26,7 @@ const SearchBar = () => {
         value={searchState.location}
         onKeyPress={onSubmitHandler}
       />
+      <p className="error-container">{searchState.errorMessage}</p>
     </div>
   );
 };

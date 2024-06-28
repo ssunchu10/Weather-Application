@@ -2,6 +2,7 @@
 // import { useState } from "react";
 // import moment from "moment";
 import SearchBar from "./components/Search/SearchBar";
+import WeatherData from "./components/WeatherData/WeatherData"
 
 // const App = () => {
 //   const [data, setData] = useState([]);
@@ -99,14 +100,13 @@ import SearchBar from "./components/Search/SearchBar";
 //   );
 // };
 
-// const convertUnixTime = (unixtime, timezonOffset) => {
-//   return moment.unix(unixtime).utcOffset(timezonOffset / 60).format("h:mm A");
-// };
+
 
 const App = () => {
   return (
     <div className="app">
       <SearchBar />
+      <WeatherData />
     </div>
   );
 };

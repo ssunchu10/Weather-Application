@@ -1,0 +1,13 @@
+.data-container {
+    padding: 0 1rem;
+    padding-top: 75px;
+}
+
+.top-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.description-container {
+    text-align: center;
+}
