@@ -38,3 +38,15 @@
 .bold{
     font-weight: 700;
 }
+
+.button {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.add-button {
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
